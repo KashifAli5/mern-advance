@@ -1,3 +1,5 @@
+const Validator = require('fastest-validator');
+
 const models = require('../models');
 
 // method to save posts
@@ -10,6 +12,25 @@ function save(req, res){
         categoryId: req.body.category_id,
         userId: 1
     }
+
+    // validation schema
+    const schema = {
+        title: {type: "string", optional: false, max: "100"},
+        content: {type: "string", optional: false, max: "500"},
+        categoryId: {type: "number", optional: false}
+    }
+
+    const v = new Validator();
+    const validationResponse = v.validate(post, schema);
+
+    if(validationResponse !== true){
+        return res.status(400).json({
+            message: "validation failed",
+            errors: validationResponse
+        });
+    }
+
+
 
     // passing post object to create method
     // create method return promis... so we are using then keyword 
@@ -87,6 +108,28 @@ function update(req, res){
         // we are not adding user id because it's not editing able
     }
     const userId = 1;
+
+
+
+    
+    // validation schema
+    const schema = {
+        title: {type: "string", optional: false, max: "100"},
+        content: {type: "string", optional: false, max: "500"},
+        categoryId: {type: "number", optional: false}
+    }
+
+    const v = new Validator();
+    const validationResponse = v.validate(updatePost, schema);
+
+    if(validationResponse !== true){
+        return res.status(400).json({
+            message: "validation failed",
+            errors: validationResponse
+        });
+    }
+
+
 
     // id-> coulmn name ... id-> coulmn value
     models.Post.update(updatePost, {where: {id:id, userId: userId}}).then(result => {
