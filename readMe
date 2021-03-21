@@ -23,3 +23,7 @@
 	
 	Creating migrate --->
 	sequelize db:migrate
+	
+	
+6: 
+	install body-parser
