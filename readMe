@@ -1,0 +1,8 @@
+1: create folder 
+	npm init
+	git init
+
+2: install express and sequilize packages
+	express init
+	
+3: create server.js and app.js file 
