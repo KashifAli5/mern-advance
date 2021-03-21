@@ -12,3 +12,14 @@
 	create controll and routes sparately 
 	and call into app.js file
 	also used "use" method for medial ware.
+	
+	
+5: using Sequelize
+	Creating models --->
+	sequelize model:generate --name Post --attributes title:string,content:text,imageUrl:string,categoryId:integer,userId:integer
+	sequelize model:generate --name User --attributes name:string,email:string,password:string
+	sequelize model:generate --name Category --attributes name:string
+	sequelize model:generate --name Comment --attributes content:text,postId:integer,userId:integer
+	
+	Creating migrate --->
+	sequelize db:migrate
