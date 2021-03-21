@@ -6,3 +6,9 @@
 	express init
 	
 3: create server.js and app.js file 
+
+
+4: in branch 101 i splite the code 
+	create controll and routes sparately 
+	and call into app.js file
+	also used "use" method for medial ware.

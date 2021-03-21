@@ -2,9 +2,16 @@ const express =  require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("hello world");
-});
+const postsRoute = require('./routes/posts'); 
+
+// use this the special method
+// by using this method we  can run anything as medal ware for incomming request
+
+// we can use function in this method of any code block for incomming requiest
+
+// here "postsRoute" is the medial ware that we are going to use
+
+app.use("/posts", postsRoute);
 
 
 module.exports = app
