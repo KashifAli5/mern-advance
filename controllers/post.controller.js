@@ -54,6 +54,17 @@ function show(req, res){
 
 
 
+// getting all the records
+function index(req, res){
+    models.Post.findAll().then(result => {
+        res.status(200).json(result);
+    }).catch(error => {
+        res.status(500).json({
+            message: "Some thing went wrong!!!"
+        });
+    });
+}
+
 
 
 
@@ -61,5 +72,6 @@ function show(req, res){
 // exporting this method so it can be accesable 
 module.exports = {
     save: save,
-    show: show
+    show: show,
+    index: index
 }
