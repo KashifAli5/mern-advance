@@ -6,6 +6,8 @@ const app = express();
 
 const postsRoute = require('./routes/posts'); 
 
+const userRoute = require('./routes/user'); 
+
 // to pass json body
 app.use(bodyParser.json());
 
@@ -19,7 +21,7 @@ app.use(bodyParser.json());
 
 // here "postsRoute" is the medial ware that we are going to use
 app.use("/posts", postsRoute);
-
+app.use("/user", userRoute);
 
 
 
