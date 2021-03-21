@@ -67,11 +67,38 @@ function index(req, res){
 
 
 
+// update post
+function update(req, res){
+    const id = req.params.id;
+    const updatePost = {
+        title: req.body.title,
+        content: req.body.content,
+        imageUrl: req.body.image_url,
+        categoryId: req.body.category_id,
+
+        // we are not adding user id because it's not editing able
+    }
+    const userId = 1;
+
+    // id-> coulmn name ... id-> coulmn value
+    models.Post.update(updatePost, {where: {id:id, userId: userId}}).then(result => {
+        res.status(200).json({
+            message: "Post has updated",
+            post: updatePost
+        })
+    }).catch(error => {
+        res.status(500).json({
+            message: "Some thing went wrong!!!",
+            error: error
+        });
+    })
+}
 
 
 // exporting this method so it can be accesable 
 module.exports = {
     save: save,
     show: show,
-    index: index
+    index: index,
+    update: update
 }
