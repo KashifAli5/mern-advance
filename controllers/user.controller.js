@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 function signUp(req, res){
     
     //Sign up
+    // checking if the mail already exist or nor
     models.User.findOne({where:{email:req.body.email}}).then(result => {
         if(result){
             res.status(409).json({
@@ -40,6 +41,8 @@ function signUp(req, res){
 
 
 function login(req, res){
+
+    
     models.User.findOne({where:{email: req.body.email}}).then(user => {
         if(user === null){
             res.status(401).json({
@@ -48,6 +51,7 @@ function login(req, res){
         }else{
             bcryptjs.compare(req.body.password, user.password, function(err, result){
                 if(result){
+                    // creating token for login user
                     const token = jwt.sign({
                         email: user.email,
                         userId: user.id
